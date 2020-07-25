@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ConcesionariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Marcas">
+    <Key>
+      <PropertyRef Name="MarcaId" />
+    </Key>
+    <Property Name="MarcaId" Type="Int32" Nullable="false" />
+    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Modelos">
+    <Key>
+      <PropertyRef Name="ModeloId" />
+    </Key>
+    <Property Name="ModeloId" Type="Int32" Nullable="false" />
+    <Property Name="MarcaId" Type="Int32" Nullable="false" />
+    <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ConcesionariosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Marcas" EntityType="Self.Marcas" />
+    <EntitySet Name="Modelos" EntityType="Self.Modelos" />
+  </EntityContainer>
+</Schema>
