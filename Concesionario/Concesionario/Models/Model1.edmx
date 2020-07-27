@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConcesionariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ConcesionariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Marcas">
           <Key>
             <PropertyRef Name="MarcaId" />
@@ -20,12 +20,27 @@
           <Property Name="MarcaId" Type="int" Nullable="false" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Modelo_Marca">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
+          <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="MarcaId" />
+            </Principal>
+            <Dependent Role="Modelos">
+              <PropertyRef Name="MarcaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ConcesionariosModelStoreContainer">
           <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Modelo_Marca" Association="Self.FK_Modelo_Marca">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Modelos" EntitySet="Modelos" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConcesionariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -35,6 +50,7 @@
           </Key>
           <Property Name="MarcaId" Type="Int32" Nullable="false" />
           <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Modelos" Relationship="ConcesionariosModel.FK_Modelo_Marca" FromRole="Marcas" ToRole="Modelos" />
         </EntityType>
         <EntityType Name="Modelos">
           <Key>
@@ -43,11 +59,28 @@
           <Property Name="ModeloId" Type="Int32" Nullable="false" />
           <Property Name="MarcaId" Type="Int32" Nullable="false" />
           <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Marcas" Relationship="ConcesionariosModel.FK_Modelo_Marca" FromRole="Modelos" ToRole="Marcas" />
         </EntityType>
         <EntityContainer Name="ConcesionariosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Marcas" EntityType="Self.Marcas" />
           <EntitySet Name="Modelos" EntityType="Self.Modelos" />
+          <AssociationSet Name="FK_Modelo_Marca" Association="ConcesionariosModel.FK_Modelo_Marca">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Modelos" EntitySet="Modelos" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Modelo_Marca">
+          <End Type="ConcesionariosModel.Marcas" Role="Marcas" Multiplicity="1" />
+          <End Type="ConcesionariosModel.Modelos" Role="Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="MarcaId" />
+            </Principal>
+            <Dependent Role="Modelos">
+              <PropertyRef Name="MarcaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

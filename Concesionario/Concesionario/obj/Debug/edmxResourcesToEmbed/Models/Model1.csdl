@@ -6,6 +6,7 @@
     </Key>
     <Property Name="MarcaId" Type="Int32" Nullable="false" />
     <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Modelos" Relationship="ConcesionariosModel.FK_Modelo_Marca" FromRole="Marcas" ToRole="Modelos" />
   </EntityType>
   <EntityType Name="Modelos">
     <Key>
@@ -14,9 +15,26 @@
     <Property Name="ModeloId" Type="Int32" Nullable="false" />
     <Property Name="MarcaId" Type="Int32" Nullable="false" />
     <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Marcas" Relationship="ConcesionariosModel.FK_Modelo_Marca" FromRole="Modelos" ToRole="Marcas" />
   </EntityType>
   <EntityContainer Name="ConcesionariosEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Marcas" EntityType="Self.Marcas" />
     <EntitySet Name="Modelos" EntityType="Self.Modelos" />
+    <AssociationSet Name="FK_Modelo_Marca" Association="ConcesionariosModel.FK_Modelo_Marca">
+      <End Role="Marcas" EntitySet="Marcas" />
+      <End Role="Modelos" EntitySet="Modelos" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Modelo_Marca">
+    <End Type="ConcesionariosModel.Marcas" Role="Marcas" Multiplicity="1" />
+    <End Type="ConcesionariosModel.Modelos" Role="Modelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marcas">
+        <PropertyRef Name="MarcaId" />
+      </Principal>
+      <Dependent Role="Modelos">
+        <PropertyRef Name="MarcaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
