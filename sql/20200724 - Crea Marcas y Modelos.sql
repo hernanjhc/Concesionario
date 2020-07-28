@@ -10,3 +10,11 @@ create table Modelos(
 	MarcaId 	int not null,
 	Modelo		varchar(50)	not	null
 )
+
+ALTER TABLE [dbo].[Modelos]  WITH CHECK ADD  CONSTRAINT [FK_Modelos_Marcas] FOREIGN KEY([MarcaId])
+REFERENCES [dbo].[Marcas] ([MarcaId])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[Modelos] CHECK CONSTRAINT [FK_Modelos_Marcas]
+GO
