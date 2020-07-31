@@ -14,8 +14,8 @@ namespace Concesionario.Models
     
     public partial class Modelos
     {
-        public int ModeloId { get; set; }
-        public int MarcaId { get; set; }
+        public int Id { get; set; }
+        public int IdMarca { get; set; }
         public string Modelo { get; set; }
     
         public virtual Marcas Marcas { get; set; }
