@@ -216,6 +216,7 @@
     <Content Include="Views\Marcas\Index.cshtml" />
     <Content Include="Views\Marcas\Create.cshtml" />
     <Content Include="Views\Marcas\Delete.cshtml" />
+    <Content Include="Views\Marcas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

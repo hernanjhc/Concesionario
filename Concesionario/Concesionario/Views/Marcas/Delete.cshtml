@@ -8,3 +8,11 @@
 
 <h1>¿ Está seguro que desea eliminar @Model.Marca ?</h1>
 
+@using (Html.BeginForm("Eliminar", "Marcas", new { id = Model.Id }, FormMethod.Post))
+{
+    <td colspan="2"><button type="submit" class="btn btn-primary">Eliminar</button></td>
+}
+@*<form action="/" method="post">
+
+    </form>*@
+

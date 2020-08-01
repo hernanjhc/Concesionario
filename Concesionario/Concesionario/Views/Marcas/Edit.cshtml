@@ -1,0 +1,26 @@
+﻿@model Concesionario.Models.Marcas
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Editar", "Marcas", FormMethod.Post))
+{
+    <table>
+        <tr>
+            @Html.Label("#")
+            @Html.TextBox("Marca", Model.Id)
+        </tr>
+        <tr>
+            @Html.Label("Marca")
+            @Html.TextBox("Marca", Model.Marca)
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" class="btn btn-primary">Editar</button></td>
+        </tr>
+    </table>
+
+    @*<input id="Name" name="Name" style="color:red" type="text" value="Enter Name" />*@
+}
