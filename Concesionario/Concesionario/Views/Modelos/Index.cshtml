@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Concesionario.Models.Modelos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Modelos</h2>
+
+@Html.ActionLink("Nuevo Modelo", "Create")
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id </th>
+                <td>@(((List<Concesionario.Models.Marcas>) ViewBag.Marcas).First( m => m.Id == item.IdMarca).Marca)</td>
+                <td>@item.Modelo</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar")
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, FormMethod.Get)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

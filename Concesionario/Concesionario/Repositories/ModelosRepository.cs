@@ -15,5 +15,34 @@ namespace Concesionario.Repositories
                 return db.Modelos.ToList();
             }
         }
+
+        public static void InsertarModelo(Modelos modelo)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                var id = db.Modelos.Any() ? db.Modelos.Max(x => x.Id) + 1 : 1;
+                modelo.Id = id;
+                db.Modelos.Add(modelo);
+                db.SaveChanges();
+            }
+        }
+
+        public static Modelos ObtenerModelo(int id)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                return db.Modelos.Find(id);
+            }
+        }
+
+        public static void EliminarModelo(int id)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                var m = db.Modelos.Find(id);
+                db.Modelos.Remove(m);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -52,9 +52,9 @@ namespace Concesionario.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Marcas marca)
+        public ActionResult Editar([Bind(Include = "Id,Marca")] Marcas marcas)
         {
-            MarcasRepository.EditarMarca(marca);
+            MarcasRepository.EditarMarca(marcas);
             return RedirectToAction("Index");
         }
     }

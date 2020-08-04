@@ -8,10 +8,11 @@
 
 @using (Html.BeginForm("Editar", "Marcas", FormMethod.Post))
 {
-    <table>
-        <tr>
-            @Html.Label("#")
-            @Html.TextBox("Marca", Model.Id)
+
+   <table>
+        <tr> 
+            @Html.Label("Id")
+            @Html.TextBox("Id", Model.Id)
         </tr>
         <tr>
             @Html.Label("Marca")
@@ -22,5 +23,4 @@
         </tr>
     </table>
 
-    @*<input id="Name" name="Name" style="color:red" type="text" value="Enter Name" />*@
 }
