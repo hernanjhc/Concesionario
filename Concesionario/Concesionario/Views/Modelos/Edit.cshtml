@@ -1,13 +1,15 @@
 ﻿@model Concesionario.Models.Modelos
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-@using (Html.BeginForm("Create", "Modelos", FormMethod.Post))
+@using (Html.BeginForm("Editar", "Modelos", FormMethod.Post))
 {
+    @Html.HiddenFor(model => model.Id)
+    
     <div class="form-group">
         @Html.LabelFor(model => model.IdMarca, "Marca:", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.DropDownList("IdMarca", (List<SelectListItem>)ViewBag.Marcas, new { @class = "form-control" })
@@ -18,9 +20,9 @@
         @Html.TextBoxFor(model => model.Modelo, new { htmlAtributes = new { @class = "form-control col-md-10" } })
     </div>
 
-<div class="form-group">
-    <td colspan="2"><button type="submit" class="btn btn-primary">Cargar</button></td>
-</div>
+    <div class="form-group">
+        <td colspan="2"><button type="submit" class="btn btn-primary">Aceptar</button></td>
+    </div>
 
 }
 

@@ -18,6 +18,7 @@ namespace Concesionario.Models
         public Marcas()
         {
             this.Modelos = new HashSet<Modelos>();
+            this.Automoviles = new HashSet<Automoviles>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace Concesionario.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Modelos> Modelos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Automoviles> Automoviles { get; set; }
     }
 }

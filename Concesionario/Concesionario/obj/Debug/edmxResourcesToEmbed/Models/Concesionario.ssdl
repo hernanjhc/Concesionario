@@ -1,5 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ConcesionariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Automoviles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dominio" Type="nchar" MaxLength="10" />
+    <Property Name="IdTipo" Type="int" />
+    <Property Name="IdMarca" Type="int" />
+    <Property Name="IdModelo" Type="int" />
+    <Property Name="Anio" Type="nchar" MaxLength="10" />
+    <Property Name="Color" Type="nchar" MaxLength="15" />
+    <Property Name="MotorN" Type="nchar" MaxLength="20" />
+    <Property Name="ChasisN" Type="nchar" MaxLength="20" />
+    <Property Name="RegistradoEn" Type="nchar" MaxLength="30" />
+    <Property Name="Estado" Type="nchar" MaxLength="15" />
+    <Property Name="Precio" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Observaciones" Type="nchar" MaxLength="200" />
+    <Property Name="Titulo" Type="int" />
+    <Property Name="Cedula" Type="int" />
+    <Property Name="F08" Type="int" />
+    <Property Name="F12" Type="int" />
+    <Property Name="Zeta" Type="int" />
+    <Property Name="CompraVenta" Type="int" />
+  </EntityType>
   <EntityType Name="Marcas">
     <Key>
       <PropertyRef Name="Id" />
@@ -15,6 +39,30 @@
     <Property Name="IdMarca" Type="int" Nullable="false" />
     <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Automoviles_Marcas">
+    <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
+    <End Role="Automoviles" Type="Self.Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marcas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automoviles_Modelos">
+    <End Role="Modelos" Type="Self.Modelos" Multiplicity="0..1" />
+    <End Role="Automoviles" Type="Self.Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdModelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Modelos_Marcas">
     <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
     <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
@@ -28,8 +76,17 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="ConcesionariosModelStoreContainer">
+    <EntitySet Name="Automoviles" EntityType="Self.Automoviles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Automoviles_Marcas" Association="Self.FK_Automoviles_Marcas">
+      <End Role="Marcas" EntitySet="Marcas" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automoviles_Modelos" Association="Self.FK_Automoviles_Modelos">
+      <End Role="Modelos" EntitySet="Modelos" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
     <AssociationSet Name="FK_Modelos_Marcas" Association="Self.FK_Modelos_Marcas">
       <End Role="Marcas" EntitySet="Marcas" />
       <End Role="Modelos" EntitySet="Modelos" />

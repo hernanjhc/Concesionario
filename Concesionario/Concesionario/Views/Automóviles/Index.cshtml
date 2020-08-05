@@ -1,19 +1,22 @@
-﻿@model IEnumerable<Concesionario.Models.Modelos>
+﻿@model IEnumerable<Concesionario.Models.Automoviles>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Modelos</h2>
+<h2>Automóviles</h2>
 
-@Html.ActionLink("Nuevo Modelo", "Create")
+@Html.ActionLink("Nuevo Automóvil", "Create")
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Marca</th>
             <th scope="col">Modelo</th>
+            <th scope="col">Color</th>
+            <th scope="col">Dominio</th>
         </tr>
     </thead>
 
@@ -25,6 +28,7 @@
                 <td>@(((List<Concesionario.Models.Marcas>) ViewBag.Marcas).First( m => m.Id == item.IdMarca).Marca)</td>
                 <td>@item.Modelo</td>
                 <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, FormMethod.Get)
                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }, FormMethod.Get)
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, FormMethod.Get)
                 </td>

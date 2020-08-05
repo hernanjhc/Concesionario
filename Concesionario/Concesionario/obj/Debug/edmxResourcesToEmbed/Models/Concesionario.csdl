@@ -7,6 +7,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Modelos" Relationship="Self.FK_Modelos_Marcas" FromRole="Marcas" ToRole="Modelos" />
+    <NavigationProperty Name="Automoviles" Relationship="ConcesionariosModel.FK_Automoviles_Marcas" FromRole="Marcas" ToRole="Automoviles" />
   </EntityType>
   <EntityType Name="Modelos">
     <Key>
@@ -16,6 +17,7 @@
     <Property Name="IdMarca" Type="Int32" Nullable="false" />
     <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Marcas" Relationship="Self.FK_Modelos_Marcas" FromRole="Modelos" ToRole="Marcas" />
+    <NavigationProperty Name="Automoviles" Relationship="ConcesionariosModel.FK_Automoviles_Modelos" FromRole="Modelos" ToRole="Automoviles" />
   </EntityType>
   <Association Name="FK_Modelos_Marcas">
     <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
@@ -36,5 +38,64 @@
       <End Role="Marcas" EntitySet="Marcas" />
       <End Role="Modelos" EntitySet="Modelos" />
     </AssociationSet>
+    <EntitySet Name="Automoviles" EntityType="ConcesionariosModel.Automoviles" />
+    <AssociationSet Name="FK_Automoviles_Marcas" Association="ConcesionariosModel.FK_Automoviles_Marcas">
+      <End Role="Marcas" EntitySet="Marcas" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automoviles_Modelos" Association="ConcesionariosModel.FK_Automoviles_Modelos">
+      <End Role="Modelos" EntitySet="Modelos" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Automoviles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dominio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IdTipo" Type="Int32" />
+    <Property Name="IdMarca" Type="Int32" />
+    <Property Name="IdModelo" Type="Int32" />
+    <Property Name="Anio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="MotorN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ChasisN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="RegistradoEn" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Estado" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="Titulo" Type="Int32" />
+    <Property Name="Cedula" Type="Int32" />
+    <Property Name="F08" Type="Int32" />
+    <Property Name="F12" Type="Int32" />
+    <Property Name="Zeta" Type="Int32" />
+    <Property Name="CompraVenta" Type="Int32" />
+    <NavigationProperty Name="Marcas" Relationship="ConcesionariosModel.FK_Automoviles_Marcas" FromRole="Automoviles" ToRole="Marcas" />
+    <NavigationProperty Name="Modelos" Relationship="ConcesionariosModel.FK_Automoviles_Modelos" FromRole="Automoviles" ToRole="Modelos" />
+  </EntityType>
+  <Association Name="FK_Automoviles_Marcas">
+    <End Type="ConcesionariosModel.Marcas" Role="Marcas" Multiplicity="0..1" />
+    <End Type="ConcesionariosModel.Automoviles" Role="Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marcas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automoviles_Modelos">
+    <End Type="ConcesionariosModel.Modelos" Role="Modelos" Multiplicity="0..1" />
+    <End Type="ConcesionariosModel.Automoviles" Role="Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdModelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

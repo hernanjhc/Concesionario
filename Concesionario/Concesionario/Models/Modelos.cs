@@ -14,10 +14,18 @@ namespace Concesionario.Models
     
     public partial class Modelos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Modelos()
+        {
+            this.Automoviles = new HashSet<Automoviles>();
+        }
+    
         public int Id { get; set; }
         public int IdMarca { get; set; }
         public string Modelo { get; set; }
     
         public virtual Marcas Marcas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Automoviles> Automoviles { get; set; }
     }
 }

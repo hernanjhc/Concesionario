@@ -57,5 +57,19 @@ namespace Concesionario.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var m = ModelosRepository.ObtenerModelo(id);
+            cargarMarcas();
+            return View(m);
+        }
+
+        [HttpPost]
+        public ActionResult Editar([Bind(Include ="Id,  IdMarca,    Modelo")] Modelos modelos)
+        {
+            ModelosRepository.EditarModelo(modelos);
+            return RedirectToAction("Index");
+        }
     }
 }

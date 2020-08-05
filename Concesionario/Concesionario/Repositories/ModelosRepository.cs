@@ -1,6 +1,7 @@
 ﻿using Concesionario.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -41,6 +42,15 @@ namespace Concesionario.Repositories
             {
                 var m = db.Modelos.Find(id);
                 db.Modelos.Remove(m);
+                db.SaveChanges();
+            }
+        }
+
+        public static void EditarModelo(Modelos modelo)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                db.Entry(modelo).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
