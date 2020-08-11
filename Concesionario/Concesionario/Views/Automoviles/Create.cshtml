@@ -1,0 +1,140 @@
+﻿@model Concesionario.Models.Automoviles
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "Automóviles", FormMethod.Post))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Tipos)
+        @Html.DropDownList("IdTipo", (List<SelectListItem>)ViewBag.Tipos, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.IdMarca, "Marca")
+        @Html.DropDownList("IdMarca", (List<SelectListItem>)ViewBag.Marcas, new { @class = "form-control", id = "IdMarca" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.IdModelo, "Modelo")
+        @*@Html.DropDownList("IdModelo", (List<SelectListItem>)ViewBag.Marcas, new { @class = "form-control" })*@
+        <select id="modelo" name="modelo" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Dominio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.Dominio, new { htmlAtributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Anio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.Anio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.MotorN, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.MotorN, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.ChasisN, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.ChasisN, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.RegistradoEn, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.RegistradoEn, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.Precio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(x => x.Observaciones, new { htmlAttributes = new { @class = "form-control col-md-2" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownListFor(x => x.Titulo, (IEnumerable<SelectListItem>)ViewBag.Titulos)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("Cedula", (List<SelectListItem>)ViewBag.Cedula, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.Cedula, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.F08, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("F08", (List<SelectListItem>)ViewBag.F08, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.F08, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.F12, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("F12", (List<SelectListItem>)ViewBag.F12, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.F12, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Zeta, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("ZETA", (List<SelectListItem>)ViewBag.Zeta, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.Zeta, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.CompraVenta, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("Compra Venta", (List<SelectListItem>)ViewBag.CompraVenta, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.CompraVenta, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("Estado", (List<SelectListItem>)ViewBag.Estado, new { @class = "form-control col-md-10" })
+        @Html.ValidationMessageFor(x => x.Estado, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <td colspan="2"><button type="submit" class="btn btn-primary">Cargar</button></td>
+    </div>
+
+}
+
+@Html.ActionLink("Volver al Listado", "Index")
+
+<script>
+    var cbMarca = document.getElementById("IdMarca");
+    cbMarca.addEventListener("change", Refresh);
+    Refresh();
+
+    function Refresh() {
+        fetch("@Url.Content("~/Automoviles/CargarModelo")" + "?IdMarca=" + cbMarca.value)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            })
+            .then(function (data){
+                console.log(data);
+                cbo = document.getElementById("modelo");
+                cbo.innerHTML = "";
+                data.forEach(function (element) {
+
+                    let opt = document.createElement("option");
+                    opt.appendChild(document.createTextNode(element.Text));
+                    opt.value = element.Value;
+
+                    cbo.appendChild(opt);
+                })
+            })
+    }
+</script>
+

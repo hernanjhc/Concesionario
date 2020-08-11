@@ -25,8 +25,11 @@
         {
             <tr>
                 <th scope="row">@item.Id </th>
+                <td>@(((List<Concesionario.Models.Tipos>) ViewBag.TiposVehículo).First( m => m.Id == item.IdTipo).Tipo)</td>
                 <td>@(((List<Concesionario.Models.Marcas>) ViewBag.Marcas).First( m => m.Id == item.IdMarca).Marca)</td>
-                <td>@item.Modelo</td>
+                <td>@(((List<Concesionario.Models.Modelos>) ViewBag.Modelos).First( m => m.Id == item.IdModelo).Modelo)</td>
+                <td>@item.Color</td>
+                <td>@item.Dominio</td>
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.Id }, FormMethod.Get)
                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }, FormMethod.Get)

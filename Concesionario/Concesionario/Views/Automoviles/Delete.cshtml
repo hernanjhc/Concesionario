@@ -1,0 +1,16 @@
+﻿@model Concesionario.Models.Automoviles
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>¿Está seguro que desea eliminar @Model.Dominio - @Model.Color?</h2>
+@using (Html.BeginForm("Eliminar", "Automóviles", new { id = Model.Id }, FormMethod.Post))
+{
+    <td colspan="2"><button type="submit" class="btn btn-primary">Eliminar</button></td>
+}
+
+@Html.ActionLink("Volver al Listado", "Index");
+
+
+

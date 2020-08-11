@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 
@@ -11,7 +12,6 @@ namespace Concesionario.Repositories
 {
     public class MarcasRepository
     {
-
         public static IEnumerable<Marcas> ObtenerMarcas()
         {
             using (var db = new ConcesionariosEntities())
@@ -62,6 +62,22 @@ namespace Concesionario.Repositories
                 //db.Entry(marca).State = EntityState.Modified;
                 //db.SaveChanges();
             }
+        }
+
+        public static List<SelectListItem> CargarSelectListMarcas()
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                var marcas =
+                    (from m in db.Marcas
+                     select new SelectListItem
+                     {
+                         Text = m.Marca,
+                         Value = m.Id.ToString()
+                     });
+                return marcas.ToList();
+            }
+
         }
     }
 }

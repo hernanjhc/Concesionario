@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[Automoviles](
 	[MotorN] [nchar](20) NULL,
 	[ChasisN] [nchar](20) NULL,
 	[RegistradoEn] [nchar](30) NULL,
-	[Estado] [nchar](15) NULL,
+	[Estado] [int] NULL,
 	[Precio] [numeric](18,2) NULL,
 	[Observaciones] [nchar](200) NULL,
 	[Titulo] [int] NULL,

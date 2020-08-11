@@ -173,8 +173,7 @@ D:\Proyectos\Concesionario\Concesionario\Concesionario\bin\es\System.Web.Razor.r
 D:\Proyectos\Concesionario\Concesionario\Concesionario\bin\es\System.Web.WebPages.resources.dll
 D:\Proyectos\Concesionario\Concesionario\Concesionario\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Proyectos\Concesionario\Concesionario\Concesionario\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.dll
-D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.pdb
-D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.csprojAssemblyReference.cache
 D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.csproj.CoreCompileInputs.cache
 D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.csproj.CopyComplete
+D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.dll
+D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.pdb

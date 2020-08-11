@@ -38,6 +38,7 @@
       <End Role="Marcas" EntitySet="Marcas" />
       <End Role="Modelos" EntitySet="Modelos" />
     </AssociationSet>
+    <EntitySet Name="Tipos" EntityType="ConcesionariosModel.Tipos" />
     <EntitySet Name="Automoviles" EntityType="ConcesionariosModel.Automoviles" />
     <AssociationSet Name="FK_Automoviles_Marcas" Association="ConcesionariosModel.FK_Automoviles_Marcas">
       <End Role="Marcas" EntitySet="Marcas" />
@@ -47,7 +48,19 @@
       <End Role="Modelos" EntitySet="Modelos" />
       <End Role="Automoviles" EntitySet="Automoviles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Automoviles_Tipos" Association="ConcesionariosModel.FK_Automoviles_Tipos">
+      <End Role="Tipos" EntitySet="Tipos" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Tipos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Automoviles" Relationship="ConcesionariosModel.FK_Automoviles_Tipos" FromRole="Tipos" ToRole="Automoviles" />
+  </EntityType>
   <EntityType Name="Automoviles">
     <Key>
       <PropertyRef Name="Id" />
@@ -62,17 +75,18 @@
     <Property Name="MotorN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="ChasisN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="RegistradoEn" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-    <Property Name="Estado" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="Titulo" Type="Int32" />
     <Property Name="Cedula" Type="Int32" />
     <Property Name="F08" Type="Int32" />
     <Property Name="F12" Type="Int32" />
     <Property Name="Zeta" Type="Int32" />
     <Property Name="CompraVenta" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Titulo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Marcas" Relationship="ConcesionariosModel.FK_Automoviles_Marcas" FromRole="Automoviles" ToRole="Marcas" />
     <NavigationProperty Name="Modelos" Relationship="ConcesionariosModel.FK_Automoviles_Modelos" FromRole="Automoviles" ToRole="Modelos" />
+    <NavigationProperty Name="Tipos" Relationship="ConcesionariosModel.FK_Automoviles_Tipos" FromRole="Automoviles" ToRole="Tipos" />
   </EntityType>
   <Association Name="FK_Automoviles_Marcas">
     <End Type="ConcesionariosModel.Marcas" Role="Marcas" Multiplicity="0..1" />
@@ -95,6 +109,18 @@
       </Principal>
       <Dependent Role="Automoviles">
         <PropertyRef Name="IdModelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automoviles_Tipos">
+    <End Type="ConcesionariosModel.Tipos" Role="Tipos" Multiplicity="0..1" />
+    <End Type="ConcesionariosModel.Automoviles" Role="Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdTipo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

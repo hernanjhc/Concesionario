@@ -18,18 +18,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tipos">
+      <EntityTypeMapping TypeName="ConcesionariosModel.Tipos">
+        <MappingFragment StoreEntitySet="Tipos">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Automoviles">
       <EntityTypeMapping TypeName="ConcesionariosModel.Automoviles">
         <MappingFragment StoreEntitySet="Automoviles">
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="CompraVenta" ColumnName="CompraVenta" />
           <ScalarProperty Name="Zeta" ColumnName="Zeta" />
           <ScalarProperty Name="F12" ColumnName="F12" />
           <ScalarProperty Name="F08" ColumnName="F08" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
           <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="RegistradoEn" ColumnName="RegistradoEn" />
           <ScalarProperty Name="ChasisN" ColumnName="ChasisN" />
           <ScalarProperty Name="MotorN" ColumnName="MotorN" />

@@ -54,5 +54,13 @@ namespace Concesionario.Repositories
                 db.SaveChanges();
             }
         }
+
+        public static List<Modelos> ObtenerModelosPorMarca(int idMarca)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                return db.Modelos.Where(x => x.IdMarca == idMarca).ToList();
+            }
+        }
     }
 }

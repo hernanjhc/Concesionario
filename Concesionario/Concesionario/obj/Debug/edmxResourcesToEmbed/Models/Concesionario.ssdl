@@ -14,15 +14,15 @@
     <Property Name="MotorN" Type="nchar" MaxLength="20" />
     <Property Name="ChasisN" Type="nchar" MaxLength="20" />
     <Property Name="RegistradoEn" Type="nchar" MaxLength="30" />
-    <Property Name="Estado" Type="nchar" MaxLength="15" />
     <Property Name="Precio" Type="numeric" Precision="18" Scale="2" />
     <Property Name="Observaciones" Type="nchar" MaxLength="200" />
-    <Property Name="Titulo" Type="int" />
     <Property Name="Cedula" Type="int" />
     <Property Name="F08" Type="int" />
     <Property Name="F12" Type="int" />
     <Property Name="Zeta" Type="int" />
     <Property Name="CompraVenta" Type="int" />
+    <Property Name="Estado" Type="int" />
+    <Property Name="Titulo" Type="varchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="Marcas">
     <Key>
@@ -38,6 +38,13 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="IdMarca" Type="int" Nullable="false" />
     <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="nchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Automoviles_Marcas">
     <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
@@ -63,6 +70,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Automoviles_Tipos">
+    <End Role="Tipos" Type="Self.Tipos" Multiplicity="0..1" />
+    <End Role="Automoviles" Type="Self.Automoviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Automoviles">
+        <PropertyRef Name="IdTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Modelos_Marcas">
     <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
     <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
@@ -79,12 +98,17 @@
     <EntitySet Name="Automoviles" EntityType="Self.Automoviles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipos" EntityType="Self.Tipos" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Automoviles_Marcas" Association="Self.FK_Automoviles_Marcas">
       <End Role="Marcas" EntitySet="Marcas" />
       <End Role="Automoviles" EntitySet="Automoviles" />
     </AssociationSet>
     <AssociationSet Name="FK_Automoviles_Modelos" Association="Self.FK_Automoviles_Modelos">
       <End Role="Modelos" EntitySet="Modelos" />
+      <End Role="Automoviles" EntitySet="Automoviles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automoviles_Tipos" Association="Self.FK_Automoviles_Tipos">
+      <End Role="Tipos" EntitySet="Tipos" />
       <End Role="Automoviles" EntitySet="Automoviles" />
     </AssociationSet>
     <AssociationSet Name="FK_Modelos_Marcas" Association="Self.FK_Modelos_Marcas">

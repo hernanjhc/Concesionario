@@ -3,16 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace Concesionario.Repositories
 {
-    public class AutomóvilesRepository
+    public class TiposRepository
     {
-        public static IEnumerable<Automoviles> ObtenerAutomoviles()
+        public static IEnumerable<Tipos> ObtenerTipos()
         {
             using (var db = new ConcesionariosEntities())
             {
-                return db.Automoviles.ToList();
+                return db.Tipos.ToList();
             }
         }
     }
