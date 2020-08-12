@@ -14,15 +14,15 @@
     <Property Name="MotorN" Type="nchar" MaxLength="20" />
     <Property Name="ChasisN" Type="nchar" MaxLength="20" />
     <Property Name="RegistradoEn" Type="nchar" MaxLength="30" />
+    <Property Name="Estado" Type="int" />
     <Property Name="Precio" Type="numeric" Precision="18" Scale="2" />
     <Property Name="Observaciones" Type="nchar" MaxLength="200" />
-    <Property Name="Cedula" Type="int" />
-    <Property Name="F08" Type="int" />
-    <Property Name="F12" Type="int" />
-    <Property Name="Zeta" Type="int" />
-    <Property Name="CompraVenta" Type="int" />
-    <Property Name="Estado" Type="int" />
-    <Property Name="Titulo" Type="varchar" MaxLength="1" />
+    <Property Name="Titulo" Type="bit" />
+    <Property Name="Cedula" Type="bit" />
+    <Property Name="F08" Type="bit" />
+    <Property Name="F12" Type="bit" />
+    <Property Name="Zeta" Type="bit" />
+    <Property Name="CompraVenta" Type="bit" />
   </EntityType>
   <EntityType Name="Marcas">
     <Key>

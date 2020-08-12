@@ -23,7 +23,7 @@ namespace Concesionario.Controllers
         public ActionResult Create()
         {
             cargarMarcas();
-            return View();
+            return View(new Models.Modelos());
         }
 
         private void cargarMarcas()

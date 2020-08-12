@@ -1,6 +1,7 @@
 ﻿using Concesionario.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,70 +35,16 @@ namespace Concesionario.Repositories
                 db.SaveChanges();
             }
         }
-
-        public static List<SelectListItem> CargarOpcionesCompraVenta()
+        
+        public static void InsertarAutomóviles(Automoviles auto)
         {
-            var opciones = new List<SelectListItem>
+            using (var db = new ConcesionariosEntities())
             {
-                new SelectListItem { Text = "No", Value = "0" },
-                new SelectListItem { Text = "Si", Value = "1" }
-            };
-            return opciones;
-
-        }
-
-        public static List<SelectListItem> CargarOpcionesZeta()
-        {
-            var opciones = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "No", Value = "0" },
-                new SelectListItem { Text = "Si", Value = "1" }
-            };
-            return opciones;
-
-        }
-
-        public static List<SelectListItem> CargarOpcionesF12()
-        {
-            var opciones = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "No", Value = "0" },
-                new SelectListItem { Text = "Si", Value = "1" }
-            };
-            return opciones;
-
-        }
-
-        public static List<SelectListItem> CargarOpcionesF08()
-        {
-            var opciones = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "No", Value = "0" },
-                new SelectListItem { Text = "Si", Value = "1" }
-            };
-            return opciones;
-
-        }
-
-        public static List<SelectListItem> CargarOpcionesCedula()
-        {
-            var opciones = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "No", Value = "0" },
-                new SelectListItem { Text = "Si", Value = "1" }
-            };
-            return opciones;
-
-        }
-
-        public static IEnumerable<SelectListItem> CargarOpcionesTitulo()
-        {
-            var opciones = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "No", Value = "N" },
-                new SelectListItem { Text = "Si", Value = "S" }
-            };
-            return opciones;
+                var id = db.Automoviles.Any() ? db.Automoviles.Max(x => x.Id) + 1 : 1;
+                auto.Id = id;
+                db.Automoviles.Add(auto);
+                db.SaveChanges();
+            }
         }
 
         public static List<SelectListItem> CargarOpcionesEstado()
@@ -109,6 +56,15 @@ namespace Concesionario.Repositories
                 new SelectListItem { Text = "Vendido", Value = "2" }
             }.ToList();
             return estados;
+        }
+
+        public static void EditarAutomóviles(Automoviles auto)
+        {
+            using (var db = new ConcesionariosEntities())
+            {
+                db.Entry(auto).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
     }
 }

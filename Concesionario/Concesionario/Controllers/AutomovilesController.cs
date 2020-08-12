@@ -23,20 +23,7 @@ namespace Concesionario.Controllers
             ViewBag.TiposVehículo = TiposRepository.ObtenerTipos();
             ViewBag.Marcas = MarcasRepository.ObtenerMarcas();
             ViewBag.Modelos = ModelosRepository.ObtenerModelos();
-            ViewBag.Estado = AutomovilesRepository.CargarOpcionesEstado();
-            //ViewBag.Titulo = AutomovilesRepository.CargarOpcionesTitulo();
-            //CargarOpcionesTitulo();
-            ViewBag.Titulos = new List<SelectListItem>() {
-                new SelectListItem{ Text = "(Seleccione)", Value = "", Selected = true},
-                new SelectListItem { Text = "No", Value = "N" },
-                new SelectListItem { Text = "Si", Value = "S" }
-            };
-
-            ViewBag.Cedula = AutomovilesRepository.CargarOpcionesCedula();
-            ViewBag.F08 = AutomovilesRepository.CargarOpcionesF08();
-            ViewBag.F12 = AutomovilesRepository.CargarOpcionesF12();
-            ViewBag.Zeta = AutomovilesRepository.CargarOpcionesZeta();
-            ViewBag.CompraVenta = AutomovilesRepository.CargarOpcionesCompraVenta();
+            ViewBag.Estados = CargarOpcionesEstado();
         }
 
         [HttpGet]
@@ -57,11 +44,36 @@ namespace Concesionario.Controllers
         public ActionResult Create()
         {
             ViewBag.Marcas = MarcasRepository.CargarSelectListMarcas();
-            cargarSelectListTipos();
-            return View();
+            ViewBag.Tipos = CargarSelectListTipos();
+            ViewBag.Estados = CargarOpcionesEstado();
+            return View(new Automoviles());
         }
 
-        private void cargarSelectListTipos()
+        [HttpPost]
+        public ActionResult Create([Bind(Include = "IdTipo, IdMarca, IdModelo, Dominio, Anio, MotorN, ChasisN, RegistradoEn, Precio, Observaciones, Color, Titulo, Cedula, F08, F12, Zeta, CompraVenta, Estado")] Automoviles autos)
+        {
+            AutomovilesRepository.InsertarAutomóviles(autos);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            ViewBag.Marcas = MarcasRepository.CargarSelectListMarcas();
+            ViewBag.Tipos = CargarSelectListTipos();
+            ViewBag.Estados = CargarOpcionesEstado();
+            var a = AutomovilesRepository.ObtenerAutomovil(id);
+            return View(a);
+        }
+
+        [HttpPost]
+        public ActionResult Editar([Bind(Include = "Id, IdTipo, IdMarca, IdModelo, Dominio, Anio, MotorN, ChasisN, RegistradoEn, Precio, Observaciones, Color, Titulo, Cedula, F08, F12, Zeta, CompraVenta, Estado")] Automoviles autos)
+        {
+            AutomovilesRepository.EditarAutomóviles(autos);
+            return RedirectToAction("Index");
+        }
+
+        private List<SelectListItem> CargarSelectListTipos()
         {
             using (var db = new ConcesionariosEntities())
             {
@@ -72,9 +84,20 @@ namespace Concesionario.Controllers
                          Text = t.Tipo,
                          Value = t.Id.ToString()
                      });
-                ViewBag.Tipos = tipos.ToList();
+                return tipos.ToList();
             }
 
+        }
+
+        public List<SelectListItem> CargarOpcionesEstado()
+        {
+            var estados = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Propio", Value = "0" },
+                new SelectListItem { Text = "Consignación", Value = "1" },
+                new SelectListItem { Text = "Vendido", Value = "2" }
+            }.ToList();
+            return estados;
         }
 
         [HttpGet]

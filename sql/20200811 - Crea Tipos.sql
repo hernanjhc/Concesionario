@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Tipos]
+GO
+
 CREATE TABLE [dbo].[Tipos](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Tipo] [nchar](50) NULL,
@@ -26,9 +29,9 @@ GO
 ALTER TABLE [dbo].[Automoviles] CHECK CONSTRAINT [FK_Automoviles_Tipos]
 GO
 
-insert into Tipos (Id, Tipo) values (1,"Sedan")
-insert into Tipos (Id, Tipo) values (2,"5P")
-insert into Tipos (Id, Tipo) values (3,"PickUp")
-insert into Tipos (Id, Tipo) values (4,"Camión")
-insert into Tipos (Id, Tipo) values (5,"SUV")
-insert into Tipos (Id, Tipo) values (6,"Furgón")
+insert into Tipos (Tipo) values ('Sedan')
+insert into Tipos (Tipo) values ('5P')
+insert into Tipos (Tipo) values ('PickUp')
+insert into Tipos (Tipo) values ('Camión')
+insert into Tipos (Tipo) values ('SUV')
+insert into Tipos (Tipo) values ('Furgón')

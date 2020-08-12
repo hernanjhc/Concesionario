@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+drop table [dbo].[Automoviles]
+go
+
 CREATE TABLE [dbo].[Automoviles](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Dominio] [nchar](10) NULL,
@@ -22,12 +25,12 @@ CREATE TABLE [dbo].[Automoviles](
 	[Estado] [int] NULL,
 	[Precio] [numeric](18,2) NULL,
 	[Observaciones] [nchar](200) NULL,
-	[Titulo] [int] NULL,
-	[Cedula] [int] NULL,
-	[F08] [int] NULL,
-	[F12] [int] NULL,
-	[Zeta] [int] NULL,
-	[CompraVenta] [int] NULL,
+	[Titulo] [bit] NULL,
+	[Cedula] [bit] NULL,
+	[F08] [bit] NULL,
+	[F12] [bit] NULL,
+	[Zeta] [bit] NULL,
+	[CompraVenta] [bit] NULL,
  CONSTRAINT [PK_Automoviles] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

@@ -177,3 +177,4 @@ D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.c
 D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.csproj.CopyComplete
 D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.dll
 D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.pdb
+D:\Proyectos\Concesionario\Concesionario\Concesionario\obj\Debug\Concesionario.csprojAssemblyReference.cache

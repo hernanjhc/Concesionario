@@ -1,14 +1,13 @@
 ﻿@model Concesionario.Models.Automoviles
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-
-@using (Html.BeginForm("Create", "Automoviles", FormMethod.Post))
+@using (Html.BeginForm("Editar", "Automoviles", FormMethod.Post))
 {
+    @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
         @Html.LabelFor(x => x.Tipos)
@@ -22,7 +21,6 @@
 
     <div class="form-group">
         @Html.LabelFor(x => x.IdModelo, "Modelo")
-        @*@Html.DropDownList("IdModelo", (List<SelectListItem>)ViewBag.Marcas, new { @class = "form-control" })*@
         <select id="IdModelo" name="IdModelo" class="form-control"></select>
     </div>
 

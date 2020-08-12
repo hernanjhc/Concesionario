@@ -19,15 +19,15 @@
           <Property Name="MotorN" Type="nchar" MaxLength="20" />
           <Property Name="ChasisN" Type="nchar" MaxLength="20" />
           <Property Name="RegistradoEn" Type="nchar" MaxLength="30" />
+          <Property Name="Estado" Type="int" />
           <Property Name="Precio" Type="numeric" Precision="18" Scale="2" />
           <Property Name="Observaciones" Type="nchar" MaxLength="200" />
-          <Property Name="Cedula" Type="int" />
-          <Property Name="F08" Type="int" />
-          <Property Name="F12" Type="int" />
-          <Property Name="Zeta" Type="int" />
-          <Property Name="CompraVenta" Type="int" />
-          <Property Name="Estado" Type="int" />
-          <Property Name="Titulo" Type="varchar" MaxLength="1" />
+          <Property Name="Titulo" Type="bit" />
+          <Property Name="Cedula" Type="bit" />
+          <Property Name="F08" Type="bit" />
+          <Property Name="F12" Type="bit" />
+          <Property Name="Zeta" Type="bit" />
+          <Property Name="CompraVenta" Type="bit" />
         </EntityType>
         <EntityType Name="Marcas">
           <Key>
@@ -163,7 +163,6 @@
             <End Role="Marcas" EntitySet="Marcas" />
             <End Role="Modelos" EntitySet="Modelos" />
           </AssociationSet>
-          <EntitySet Name="Tipos" EntityType="ConcesionariosModel.Tipos" />
           <EntitySet Name="Automoviles" EntityType="ConcesionariosModel.Automoviles" />
           <AssociationSet Name="FK_Automoviles_Marcas" Association="ConcesionariosModel.FK_Automoviles_Marcas">
             <End Role="Marcas" EntitySet="Marcas" />
@@ -173,19 +172,12 @@
             <End Role="Modelos" EntitySet="Modelos" />
             <End Role="Automoviles" EntitySet="Automoviles" />
           </AssociationSet>
+          <EntitySet Name="Tipos" EntityType="ConcesionariosModel.Tipos" />
           <AssociationSet Name="FK_Automoviles_Tipos" Association="ConcesionariosModel.FK_Automoviles_Tipos">
             <End Role="Tipos" EntitySet="Tipos" />
             <End Role="Automoviles" EntitySet="Automoviles" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="Tipos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Automoviles" Relationship="ConcesionariosModel.FK_Automoviles_Tipos" FromRole="Tipos" ToRole="Automoviles" />
-        </EntityType>
         <EntityType Name="Automoviles">
           <Key>
             <PropertyRef Name="Id" />
@@ -200,15 +192,15 @@
           <Property Name="MotorN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="ChasisN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="RegistradoEn" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Estado" Type="Int32" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-          <Property Name="Cedula" Type="Int32" />
-          <Property Name="F08" Type="Int32" />
-          <Property Name="F12" Type="Int32" />
-          <Property Name="Zeta" Type="Int32" />
-          <Property Name="CompraVenta" Type="Int32" />
-          <Property Name="Estado" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="Boolean" />
+          <Property Name="Cedula" Type="Boolean" />
+          <Property Name="F08" Type="Boolean" />
+          <Property Name="F12" Type="Boolean" />
+          <Property Name="Zeta" Type="Boolean" />
+          <Property Name="CompraVenta" Type="Boolean" />
           <NavigationProperty Name="Marcas" Relationship="ConcesionariosModel.FK_Automoviles_Marcas" FromRole="Automoviles" ToRole="Marcas" />
           <NavigationProperty Name="Modelos" Relationship="ConcesionariosModel.FK_Automoviles_Modelos" FromRole="Automoviles" ToRole="Modelos" />
           <NavigationProperty Name="Tipos" Relationship="ConcesionariosModel.FK_Automoviles_Tipos" FromRole="Automoviles" ToRole="Tipos" />
@@ -237,6 +229,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Automoviles" Relationship="ConcesionariosModel.FK_Automoviles_Tipos" FromRole="Tipos" ToRole="Automoviles" />
+        </EntityType>
         <Association Name="FK_Automoviles_Tipos">
           <End Type="ConcesionariosModel.Tipos" Role="Tipos" Multiplicity="0..1" />
           <End Type="ConcesionariosModel.Automoviles" Role="Automoviles" Multiplicity="*" />
@@ -272,26 +272,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tipos">
-            <EntityTypeMapping TypeName="ConcesionariosModel.Tipos">
-              <MappingFragment StoreEntitySet="Tipos">
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Automoviles">
             <EntityTypeMapping TypeName="ConcesionariosModel.Automoviles">
               <MappingFragment StoreEntitySet="Automoviles">
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="CompraVenta" ColumnName="CompraVenta" />
                 <ScalarProperty Name="Zeta" ColumnName="Zeta" />
                 <ScalarProperty Name="F12" ColumnName="F12" />
                 <ScalarProperty Name="F08" ColumnName="F08" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="RegistradoEn" ColumnName="RegistradoEn" />
                 <ScalarProperty Name="ChasisN" ColumnName="ChasisN" />
                 <ScalarProperty Name="MotorN" ColumnName="MotorN" />
@@ -301,6 +293,14 @@
                 <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
                 <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
                 <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos">
+            <EntityTypeMapping TypeName="ConcesionariosModel.Tipos">
+              <MappingFragment StoreEntitySet="Tipos">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

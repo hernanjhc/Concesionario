@@ -24,15 +24,15 @@ namespace Concesionario.Models
         public string MotorN { get; set; }
         public string ChasisN { get; set; }
         public string RegistradoEn { get; set; }
+        public Nullable<int> Estado { get; set; }
         public Nullable<decimal> Precio { get; set; }
         public string Observaciones { get; set; }
-        public Nullable<int> Cedula { get; set; }
-        public Nullable<int> F08 { get; set; }
-        public Nullable<int> F12 { get; set; }
-        public Nullable<int> Zeta { get; set; }
-        public Nullable<int> CompraVenta { get; set; }
-        public Nullable<int> Estado { get; set; }
-        public string Titulo { get; set; }
+        public Nullable<bool> Titulo { get; set; }
+        public Nullable<bool> Cedula { get; set; }
+        public Nullable<bool> F08 { get; set; }
+        public Nullable<bool> F12 { get; set; }
+        public Nullable<bool> Zeta { get; set; }
+        public Nullable<bool> CompraVenta { get; set; }
     
         public virtual Marcas Marcas { get; set; }
         public virtual Modelos Modelos { get; set; }
