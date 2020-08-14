@@ -8,19 +8,13 @@
 
 @using (Html.BeginForm("Editar", "Marcas", FormMethod.Post))
 {
-
-   <table>
-        <tr> 
-            @Html.Label("Id")
-            @Html.TextBox("Id", Model.Id)
-        </tr>
-        <tr>
-            @Html.Label("Marca")
-            @Html.TextBox("Marca", Model.Marca)
-        </tr>
-        <tr>
-            <td colspan="2"><button type="submit" class="btn btn-primary">Editar</button></td>
-        </tr>
-    </table>
-
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Marca)
+        @Html.TextBoxFor(m => m.Marca, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <td colspan="2"><button type="submit" class="btn btn-secondary">Editar</button></td> | 
+        @Html.ActionLink("Volver al Listado", "Index")
+    </div>
 }

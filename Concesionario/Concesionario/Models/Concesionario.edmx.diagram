@@ -13,6 +13,8 @@
         <AssociationConnector Association="ConcesionariosModel.FK_Automoviles_Modelos" />
         <EntityTypeShape EntityType="ConcesionariosModel.Tipos" Width="1.5" PointX="0.75" PointY="4.875" />
         <AssociationConnector Association="ConcesionariosModel.FK_Automoviles_Tipos" />
+        <EntityTypeShape EntityType="ConcesionariosModel.Clientes" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ConcesionariosModel.Vendedores" Width="1.5" PointX="5.375" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

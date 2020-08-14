@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Concesionario.Models.Clientes>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Nuevo Cliente", "Create")
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Razón Social</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Localidad</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Celular</th>
+            <th scope="col">EMail</th>
+            <th scope="col">Observaciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id </th>
+                <td>@item.RazonSocial</td>
+                <td>@item.Dni</td>
+                <td>@item.Direccion</td>
+                <td>@item.Localidad</td>
+                <td>@item.Telefono</td>
+                <td>@item.Celular</td>
+                <td>@item.Email</td>
+                <td>@item.Observaciones</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, FormMethod.Get)
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, FormMethod.Get)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -131,13 +131,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AutomovilesController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
+    <Compile Include="Controllers\VendedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Automoviles.cs">
+      <DependentUpon>Concesionario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clientes.cs">
       <DependentUpon>Concesionario.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Concesionario.Context.cs">
@@ -164,10 +169,15 @@
     <Compile Include="Models\Tipos.cs">
       <DependentUpon>Concesionario.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Vendedores.cs">
+      <DependentUpon>Concesionario.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AutomovilesRepository.cs" />
+    <Compile Include="Repositories\ClientesRepository.cs" />
     <Compile Include="Repositories\MarcasRepository.cs" />
     <Compile Include="Repositories\ModelosRepository.cs" />
+    <Compile Include="Repositories\ProveedoresRepository.cs" />
     <Compile Include="Repositories\TiposRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +246,14 @@
     <Content Include="Views\Automoviles\Delete.cshtml" />
     <Content Include="Views\Automoviles\Create.cshtml" />
     <Content Include="Views\Automoviles\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Vendedores\Index.cshtml" />
+    <Content Include="Views\Vendedores\Create.cshtml" />
+    <Content Include="Views\Vendedores\Edit.cshtml" />
+    <Content Include="Views\Vendedores\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

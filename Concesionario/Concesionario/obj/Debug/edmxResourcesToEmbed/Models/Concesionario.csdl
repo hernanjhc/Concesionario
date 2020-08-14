@@ -52,6 +52,8 @@
       <End Role="Tipos" EntitySet="Tipos" />
       <End Role="Automoviles" EntitySet="Automoviles" />
     </AssociationSet>
+    <EntitySet Name="Clientes" EntityType="ConcesionariosModel.Clientes" />
+    <EntitySet Name="Vendedores" EntityType="ConcesionariosModel.Vendedores" />
   </EntityContainer>
   <EntityType Name="Automoviles">
     <Key>
@@ -124,4 +126,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Dni" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="Localidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Celular" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Vendedores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Dni" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+    <Property Name="Localidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Celular" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
 </Schema>

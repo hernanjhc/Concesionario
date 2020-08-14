@@ -29,5 +29,7 @@ namespace Concesionario.Models
         public virtual DbSet<Modelos> Modelos { get; set; }
         public virtual DbSet<Automoviles> Automoviles { get; set; }
         public virtual DbSet<Tipos> Tipos { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Vendedores> Vendedores { get; set; }
     }
 }

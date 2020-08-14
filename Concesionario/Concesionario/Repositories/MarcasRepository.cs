@@ -25,7 +25,7 @@ namespace Concesionario.Repositories
             using (var db = new ConcesionariosEntities())
             {
                 var m = new Marcas();
-                var id = db.Marcas.Any() ? db.Marcas.Max(x => x.Id) + 1 : 1;
+                var id = db.Marcas.Any() ? db.Marcas.Max(marcas => marcas.Id) + 1 : 1;
                 m.Id = id;
                 m.Marca = marca;
                 db.Marcas.Add(m);
@@ -57,10 +57,7 @@ namespace Concesionario.Repositories
             {
                 var m = db.Marcas.Find(marca.Id);
                 m.Marca = marca.Marca;
-                //db.Entry(m);
                 db.SaveChanges();
-                //db.Entry(marca).State = EntityState.Modified;
-                //db.SaveChanges();
             }
         }
 

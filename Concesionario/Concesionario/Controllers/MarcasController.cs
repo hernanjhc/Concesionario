@@ -20,7 +20,7 @@ namespace Concesionario.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new Marcas());
         }
 
         [HttpPost]

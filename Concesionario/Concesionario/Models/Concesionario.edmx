@@ -29,6 +29,20 @@
           <Property Name="Zeta" Type="bit" />
           <Property Name="CompraVenta" Type="bit" />
         </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="nchar" MaxLength="50" />
+          <Property Name="Dni" Type="nchar" MaxLength="13" />
+          <Property Name="Direccion" Type="nchar" MaxLength="60" />
+          <Property Name="Localidad" Type="nchar" MaxLength="30" />
+          <Property Name="Telefono" Type="nchar" MaxLength="16" />
+          <Property Name="Celular" Type="nchar" MaxLength="16" />
+          <Property Name="Email" Type="nchar" MaxLength="40" />
+          <Property Name="Observaciones" Type="nchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Marcas">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,6 +64,20 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vendedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="nchar" MaxLength="50" />
+          <Property Name="Dni" Type="nchar" MaxLength="13" />
+          <Property Name="Direccion" Type="nchar" MaxLength="60" />
+          <Property Name="Localidad" Type="nchar" MaxLength="30" />
+          <Property Name="Telefono" Type="nchar" MaxLength="16" />
+          <Property Name="Celular" Type="nchar" MaxLength="16" />
+          <Property Name="Email" Type="nchar" MaxLength="40" />
+          <Property Name="Observaciones" Type="nchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_Automoviles_Marcas">
           <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
@@ -101,9 +129,11 @@
         </Association>
         <EntityContainer Name="ConcesionariosModelStoreContainer">
           <EntitySet Name="Automoviles" EntityType="Self.Automoviles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipos" EntityType="Self.Tipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendedores" EntityType="Self.Vendedores" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Automoviles_Marcas" Association="Self.FK_Automoviles_Marcas">
             <End Role="Marcas" EntitySet="Marcas" />
             <End Role="Automoviles" EntitySet="Automoviles" />
@@ -177,6 +207,8 @@
             <End Role="Tipos" EntitySet="Tipos" />
             <End Role="Automoviles" EntitySet="Automoviles" />
           </AssociationSet>
+          <EntitySet Name="Clientes" EntityType="ConcesionariosModel.Clientes" />
+          <EntitySet Name="Vendedores" EntityType="ConcesionariosModel.Vendedores" />
           </EntityContainer>
         <EntityType Name="Automoviles">
           <Key>
@@ -249,6 +281,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Dni" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="Localidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Celular" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Vendedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Dni" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="Localidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Celular" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -301,6 +361,36 @@
             <EntityTypeMapping TypeName="ConcesionariosModel.Tipos">
               <MappingFragment StoreEntitySet="Tipos">
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="ConcesionariosModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendedores">
+            <EntityTypeMapping TypeName="ConcesionariosModel.Vendedores">
+              <MappingFragment StoreEntitySet="Vendedores">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
