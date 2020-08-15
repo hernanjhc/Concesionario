@@ -254,6 +254,7 @@
     <Content Include="Views\Vendedores\Create.cshtml" />
     <Content Include="Views\Vendedores\Edit.cshtml" />
     <Content Include="Views\Vendedores\Delete.cshtml" />
+    <Content Include="Views\Automoviles\_cargarModelos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

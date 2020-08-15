@@ -10,10 +10,6 @@
 @using (Html.BeginForm("Create", "Automoviles", FormMethod.Post))
 {
 
-    <div class="form-group">
-        @Html.LabelFor(x => x.Tipos)
-        @Html.DropDownList("IdTipo", (List<SelectListItem>)ViewBag.Tipos, new { @class = "form-control" })
-    </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.IdMarca, "Marca")
@@ -67,11 +63,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(x => x.Estado, "Estado")
-        @Html.DropDownList("Estado", (List<SelectListItem>)ViewBag.Estados, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
 
         @Html.CheckBox("Titulo", Model.Titulo)
         @Html.LabelFor(x => x.Titulo, "Tiene título")
@@ -100,31 +91,18 @@
 
 @Html.ActionLink("Volver al Listado", "Index")
 
-<script>
-    var cbMarca = document.getElementById("IdMarca");
-    cbMarca.addEventListener("change", Refresh);
-    Refresh();
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function inicializarModelos() {
+                var id = $('#IdMarca').find(':selected').val();
+                $.get('CargarModelos/' + id, function (data) {
+                    $('#IdModelo').replaceWith(data);
+                });
+            }
 
-    function Refresh() {
-        fetch("@Url.Content("~/Automoviles/CargarModelo")" + "?IdMarca=" + cbMarca.value)
-            .then(function (result) {
-                if (result.ok) {
-                    return result.json();
-                }
-            })
-            .then(function (data){
-                console.log(data);
-                cbo = document.getElementById("IdModelo");
-                cbo.innerHTML = "";
-                data.forEach(function (element) {
-
-                    let opt = document.createElement("option");
-                    opt.appendChild(document.createTextNode(element.Text));
-                    opt.value = element.Value;
-
-                    cbo.appendChild(opt);
-                })
-            })
-    }
-</script>
-
+            inicializarModelos();
+            $('#IdMarca').on('change', inicializarModelos);
+        });
+    </script>
+}

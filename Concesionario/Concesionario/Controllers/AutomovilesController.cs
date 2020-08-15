@@ -44,8 +44,8 @@ namespace Concesionario.Controllers
         public ActionResult Create()
         {
             ViewBag.Marcas = MarcasRepository.CargarSelectListMarcas();
-            ViewBag.Tipos = CargarSelectListTipos();
-            ViewBag.Estados = CargarOpcionesEstado();
+            //ViewBag.Tipos = CargarSelectListTipos();
+            //ViewBag.Estados = CargarOpcionesEstado();
             return View(new Automoviles());
         }
 
@@ -100,22 +100,19 @@ namespace Concesionario.Controllers
             return estados;
         }
 
-        [HttpGet]
-        public JsonResult CargarModelo(int idMarca)
+        public ActionResult CargarModelos(int id)
         {
-            List<ElementJsonIntKey> lst = new List<ElementJsonIntKey>();
             using (var db = new ConcesionariosEntities())
             {
-                lst = (from m in db.Modelos
-                       where m.IdMarca == idMarca
-                       select new ElementJsonIntKey
-                       {
-                           Value = m.Id,
-                           Text = m.Modelo
-                       }
-                       ).ToList();
+                var result = (from m in db.Modelos
+                              where m.IdMarca == id
+                              select new SelectListItem
+                              {
+                                  Text = m.Modelo,
+                                  Value = m.Id.ToString()
+                              }).ToList();
+                return PartialView("_cargarModelos", result);
             }
-            return Json(lst, JsonRequestBehavior.AllowGet);
         }
 
         public class ElementJsonIntKey
